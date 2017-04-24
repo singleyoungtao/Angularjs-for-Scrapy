@@ -23,6 +23,14 @@ factory('GetResults', ['$resource', function($resource) {
         });
     }])
     .controller('showPageCtrl', ['$scope', 'GetResults', function($scope, GetResults) {
-        var pageshow = GetResults.query()
-        $scope.results = pageshow['results']
+        var pageshow = GetResults.get()
+            // 'get': {method:'GET'},  'query':  {method:'GET', isArray:true}
+        $scope.pageshowcopy = pageshow
+        $scope.pageshowresults = $scope.pageshowcopy.results
+        $scope.teststr = "pageshow"
+            // $scope.testjson = JSON.parse(pageshow)
+            // var a = pageshow
+            // b = JSON.parse(a)
+        $scope.c = GetResults.get()
+            // 得到传过来的json后可以直接使用。
     }])
