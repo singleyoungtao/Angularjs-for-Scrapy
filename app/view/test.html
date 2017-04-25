@@ -1,9 +1,19 @@
 <h2>路由成功</h2>
+<div>
+    <form name="form" ng-submit="getResultsClick()">
+        <div>
+            <input type="text" ng-model="inputkeywords" placeholder="搜索" class="form-control" pattern="^[\S](.{0,50})[\S]$" autofocus required/>
+            <input type="submit" class="btn btn-primary" value="Search" />
+        </div>
+    </form>
+</div>
 <hr>
-<div>{{ pageshowcopy }}</div>
-<div>{{ pageshowcopy.results }}</div>
-<span>{{ teststr }}</span>
-<div>{{ c }}</div>
-<div ng-repeat="result1 in c.results">
-    <span ng-bind="result1.url"> </span>
+<div ng-show="searched">
+    <div>{{ pageshowcopy.results }}</div>
+    <span>{{ teststr }}</span>
+    <div ng-repeat="result1 in pageshowcopy.results">
+        <span ng-bind="result1.url"> </span>
+        <br>
+        <span ng-bind="result1.fragment"></span>
+    </div>
 </div>
