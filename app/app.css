@@ -1,0 +1,14 @@
+.match {
+    font-size: 1.1em;
+    color: #dd4b39;
+    font-weight: 100;
+}
+
+.url {
+    color: #1a0dab;
+}
+
+.title {
+    font-size: 1.2em;
+    color: blue;
+}

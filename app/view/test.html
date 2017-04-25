@@ -12,8 +12,9 @@
     <div>{{ pageshowcopy.results }}</div>
     <span>{{ teststr }}</span>
     <div ng-repeat="result1 in pageshowcopy.results">
-        <span ng-bind="result1.url"> </span>
+        <span ng-bind="result1.title" class="title"> </span>
+        <span ng-bind="result1.url" class="url"> </span>
         <br>
-        <span ng-bind="result1.fragment"></span>
+        <span ng-bind-html="result1.fragment"></span>
     </div>
 </div>

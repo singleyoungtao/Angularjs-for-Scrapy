@@ -2,7 +2,8 @@
 
 angular.module('app', [
     'ngRoute',
-    'ngResource'
+    'ngResource',
+    'ngSanitize'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');
