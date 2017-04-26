@@ -1,15 +1,38 @@
 <h2>路由成功</h2>
 <div>
-    <form name="form" ng-submit="getResultsClick()">
+    <span>默认域名为：{{ defaulturl.posturl }}</span>
+    <button ng-click="changeUrl()" class=" btn btn-primary">更换默认域名</button>
+</div>
+
+<div ng-show="checkpasswordview">
+    <input type="text" ng-model="inputpassword" placeholder="请输入密码" class="form-control" pattern="^[\S](.{0,50})[\S]$" required/>
+    <button ng-click="checkPassword()" class="btn btn-primary">验证</button>
+</div>
+
+<div>
+    <form name="url_form" ng-show="checkpass" ng-submit="sendUrlClick()">
         <div>
-            <input type="text" ng-model="inputkeywords" placeholder="搜索" class="form-control" pattern="^[\S](.{0,50})[\S]$" autofocus required/>
+            <span>提示密码输入正确</span>
+            <input type="text" ng-model="inputurl" placeholder="域名" class="form-control" pattern="^[\S](.{0,50})[\S]$" required/>
+            <input type="submit" class="btn btn-primary" value="Send" />
+        </div>
+    </form>
+</div>
+<div>
+    <form name="search_form" ng-submit="getResultsClick()">
+        <div>
+            <input type="text" ng-model="inputkeywords" placeholder="搜索" class="form-control" pattern="^[\S](.{0,50})[\S]$" required/>
             <input type="submit" class="btn btn-primary" value="Search" />
         </div>
     </form>
 </div>
 <hr>
-<div ng-show="searched">
-    <div>{{ pageshowcopy.results }}</div>
+<!--<div ng-show="!searched">
+    <span>搜索失败～默认域名有误或搜索过程中出现问题</span>-->
+</div>
+<!--<div ng-show="searched">-->
+<div>
+    <!--<div>{{ pageshowcopy.results }}</div>-->
     <span>{{ teststr }}</span>
     <div ng-repeat="result1 in pageshowcopy.results">
         <span ng-bind="result1.title" class="title"> </span>
