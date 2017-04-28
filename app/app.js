@@ -59,6 +59,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             // console.log($scope.defaultrul.posturl);
             $scope.checkpasswordview = false;
             $scope.checkpass = false;
+            $scope.issendurl = false;
             $scope.searched = false;
             $scope.changeUrl = function() {
                 $scope.checkpasswordview = true;
@@ -73,6 +74,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
                 }
             }
             $scope.sendUrlClick = function() {
+                $scope.issendurl = true;
                 $http.post('http://127.0.0.1:5000/url-post', { posturl: $scope.inputurl }).then(function(resp) {
                         console.log("发送成功");
                         // $scope.defaulturl = GetUrl.get();
@@ -91,6 +93,18 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
                     //     console.log(error.status);
                     // })
 
+            }
+            $scope.checkCrawlFinished = function() {
+                $http.get('http://127.0.0.1:5000/check-crawl').then(function(resp) {
+                    if (resp.data.pending == 0) {
+                        $scope.isfinished = true;
+                    } else {
+                        $scope.isfinished = false;
+                    }
+                }, function(error) {
+                    console.log("error");
+                    alert("爬取检查失败");
+                })
             }
             $scope.getResultsClick = function() {
                 // GetResults.save({}, { keywords: $scope.inputkeywords }, function(resp) {
