@@ -3,7 +3,7 @@
 angular.module('app', [
     'ngRoute',
     'ngResource',
-    'ngSanitize'
+    'ngSanitize' // 使用ng-bind-html
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');
@@ -115,6 +115,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
                     // post方法直接就有返回的response，不用再次发get请求
                     $scope.pageshowcopy = pageshow;
                     $scope.pageshowresults = $scope.pageshowcopy.results;
+                    $scope.total_items = $scope.pageshowcopy.total_items;
                     $scope.teststr = "pageshow";
                     // $scope.c = GetResults.get()
                     // 得到传过来的json后可以直接使用。

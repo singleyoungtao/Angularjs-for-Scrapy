@@ -42,7 +42,7 @@
 <!--<div ng-show="searched">-->
 <div>
     <!--<div>{{ pageshowcopy.results }}</div>-->
-    <span>{{ teststr }}</span>
+    <span>搜索结果共有{{ total_items }}条记录。</span>
     <div ng-repeat="result1 in pageshowcopy.results">
         <span ng-bind="result1.title" class="title"> </span>
         <span ng-bind="result1.url" class="url"> </span>
