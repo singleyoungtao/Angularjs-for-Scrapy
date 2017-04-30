@@ -3,7 +3,8 @@
 angular.module('app', [
     'ngRoute',
     'ngResource',
-    'ngSanitize' // 使用ng-bind-html
+    'ngSanitize', // 使用ng-bind-html
+    'ui.bootstrap' // 这里是手动下载导入的，而且不用再在controller中注入一次，注意！
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');
@@ -61,6 +62,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
             $scope.checkpass = false;
             $scope.issendurl = false;
             $scope.searched = false;
+            // $scope.pageshowresults = [];
             $scope.changeUrl = function() {
                 $scope.checkpasswordview = true;
             };
@@ -115,19 +117,39 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
                     // post方法直接就有返回的response，不用再次发get请求
                     $scope.pageshowcopy = pageshow;
                     $scope.pageshowresults = $scope.pageshowcopy.results;
+                    var pageuseresults = $scope.pageshowresults
+                        // 此处的pageshowresults是一个object的数组，object是每一个json
                     $scope.total_items = $scope.pageshowcopy.total_items;
                     $scope.teststr = "pageshow";
                     // $scope.c = GetResults.get()
                     // 得到传过来的json后可以直接使用。
                     $scope.searched = true;
+                    // 分页部分
+                    $scope.data = [];
+                    // for (var i = 0; i < length(pageuseresults)) {
+                    //     $scope.data.push(pageuser);
+                    // }
+                    $scope.data = pageuseresults;
+                    console.log(pageuseresults);
+                    $scope.maxSize = 3; //可点击的页码个数
+                    $scope.numPages = $scope.data.length; //总页码数
+                    $scope.itemSize = 1; //每页条目数
+                    $scope.bigTotalItems = $scope.data.length; // bigTotalItems/items-per-page(每页最大条目数) 位总页码数
+                    // $scope.bigCurrentPage = 1; //初始时被选中的页码
+                    $scope.pageData = $scope.data.slice(0, $scope.itemSize);
+
+
                 }, function(error) {
                     $scope.searched = false;
                     alert("发送请求失败！");
                     console.log(error.status);
                 });
-
-
             }
+
+            $scope.showItems = function() {
+                $scope.pageData = $scope.data.slice(($scope.bigCurrentPage - 1) * $scope.itemSize, ($scope.bigCurrentPage - 1) * $scope.itemSize + $scope.itemSize)
+            };
+
 
         }
     ])

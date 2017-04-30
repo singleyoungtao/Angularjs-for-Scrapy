@@ -38,15 +38,25 @@
 <hr>
 <!--<div ng-show="!searched">
     <span>搜索失败～默认域名有误或搜索过程中出现问题</span>-->
-</div>
-<!--<div ng-show="searched">-->
-<div>
-    <!--<div>{{ pageshowcopy.results }}</div>-->
-    <span>搜索结果共有{{ total_items }}条记录。</span>
-    <div ng-repeat="result1 in pageshowcopy.results">
+<!--</div>-->
+<div ng-show="searched">
+    <div>
+        <!--<div>{{ pageshowcopy.results }}</div>-->
+        <span>搜索结果共有{{ total_items }}条记录。</span>
+        <!--<div ng-repeat="result1 in pageshowcopy.results">
         <span ng-bind="result1.title" class="title"> </span>
         <span ng-bind="result1.url" class="url"> </span>
         <br>
         <span ng-bind-html="result1.fragment"></span>
+    </div>-->
+        <div ng-repeat=" x in pageData">
+            <span ng-bind="x.title" class="title"></span><br>
+            <span ng-bind="x.url" class="url"></span><br>
+            <span ng-bind-html="x.fragment" class="fragment"></span>
+        </div>
+        <!--<pagination total-items="bigTotalItems" ng-change="showItems()" ng-model="bigCurrentPage" items-per-page="itemSize" max-size="maxSize" force-ellipses="true" class="pagination-sm" rotate="false" boundary-links="true" num-pages="numPages"></pagination>-->
+        <ul uib-pagination total-items="bigTotalItems" ng-change="showItems()" ng-model="bigCurrentPage" items-per-page="itemSize" max-size="maxSize" force-ellipses="true" class="pagination-sm" rotate="false" boundary-links="true" num-pages="numPages"></ul>
+
+        <a class="btn btn-primary">总共：{{ numPages }}页</a>
     </div>
 </div>
