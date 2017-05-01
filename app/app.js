@@ -131,9 +131,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
                     // }
                     $scope.data = pageuseresults;
                     console.log(pageuseresults);
-                    $scope.maxSize = 3; //可点击的页码个数
-                    $scope.numPages = $scope.data.length; //总页码数
-                    $scope.itemSize = 1; //每页条目数
+                    $scope.maxSize = 5; //可点击的页码个数
+                    $scope.itemSize = 10; //每页条目数
                     $scope.bigTotalItems = $scope.data.length; // bigTotalItems/items-per-page(每页最大条目数) 位总页码数
                     // $scope.bigCurrentPage = 1; //初始时被选中的页码
                     $scope.pageData = $scope.data.slice(0, $scope.itemSize);

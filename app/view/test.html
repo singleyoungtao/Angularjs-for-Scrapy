@@ -50,13 +50,12 @@
         <span ng-bind-html="result1.fragment"></span>
     </div>-->
         <div ng-repeat=" x in pageData">
-            <span ng-bind="x.title" class="title"></span><br>
+            <a href="{{ x.url }}" ng-bind="x.title" class="title"></a><br>
             <span ng-bind="x.url" class="url"></span><br>
             <span ng-bind-html="x.fragment" class="fragment"></span>
         </div>
         <!--<pagination total-items="bigTotalItems" ng-change="showItems()" ng-model="bigCurrentPage" items-per-page="itemSize" max-size="maxSize" force-ellipses="true" class="pagination-sm" rotate="false" boundary-links="true" num-pages="numPages"></pagination>-->
-        <ul uib-pagination total-items="bigTotalItems" ng-change="showItems()" ng-model="bigCurrentPage" items-per-page="itemSize" max-size="maxSize" force-ellipses="true" class="pagination-sm" rotate="false" boundary-links="true" num-pages="numPages"></ul>
-
-        <a class="btn btn-primary">总共：{{ numPages }}页</a>
+        <!--<ul uib-pagination total-items="bigTotalItems" ng-change="showItems()" ng-model="bigCurrentPage" items-per-page="itemSize" max-size="maxSize" force-ellipses="true" class="pagination-sm" rotate="false" boundary-links="true" num-pages="numPages"></ul>-->
+        <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true"></ul>
     </div>
 </div>
