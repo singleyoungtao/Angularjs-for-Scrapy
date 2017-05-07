@@ -1,61 +1,85 @@
-<h2>路由成功</h2>
-<div>
-    <span>默认域名为：{{ defaulturl.posturl }}</span>
-    <span>如果默认域名没显示，请刷新并耐心等待一下</span>
-    <button ng-click="changeUrl()" class=" btn btn-primary">更换默认域名</button>
-</div>
-
-<div ng-show="checkpasswordview">
-    <input type="text" ng-model="inputpassword" placeholder="请输入密码" class="form-control" pattern="^[\S](.{0,50})[\S]$" required/>
-    <button ng-click="checkPassword()" class="btn btn-primary">验证</button>
-</div>
-
-<div>
-    <form name="url_form" ng-show="checkpass" ng-submit="sendUrlClick()">
-        <div>
-            <span>提示密码输入正确,输入域名时，请确认您拥有此域名的爬取权限，切勿违反法律法规</span>
-            <span>域名是浏览器地址栏中url黑体的部分，后面的不需要，而且也不加http或者https://的部分，比如：....</span>
-            <span>同一时间只能有一个人修改，但可以多人查询（这里没有对修改域名功能做多线程的修改）</span>
-            <span>不许与默认域名相同</span>
-            <input type="text" ng-model="inputurl" placeholder="域名" class="form-control" pattern="^[\S](.{0,50})[\S]$" required/>
-            <input type="submit" class="btn btn-primary" value="Send" />
+<!--<div ng-class="{'main-part-unsearched': !searched, 'main-part-searched': searched}">-->
+<div class="main-part">
+    <div class="left-part">
+        <!--<div ng-show="!searched" class="header-left">-->
+        <div class="header-left">
+            <span>精准</span>
+            <span>及时</span>
+            <span>定制</span>
+            <!--<span>多线程</span>
+            <span>分布式</span>-->
+            <span> | </span>
+            <span>当前域名为：{{ defaulturl.posturl }}</span>
+            <!--<span>nwsuaf</span>-->
         </div>
-    </form>
-</div>
-<div ng-show="issendurl">
-    <button ng-click="checkCrawlFinished()" class="btn btn-primary">验证是否爬取完毕</button>
-    <span ng-show="isfinished">爬取完毕</span>
-    <span ng-show="!isfinished">爬取未完成，请等待</span>
-</div>
-<div>
-    <form name="search_form" ng-submit="getResultsClick()">
-        <div>
-            <input type="text" ng-model="inputkeywords" placeholder="搜索" class="form-control" pattern="^[\S](.{0,50})[\S]$" required/>
-            <input type="submit" class="btn btn-primary" value="Search" />
+
+
+        <div ng-class="{'unsearch-part':!searched, 'searched-part':searched}">
+            <form name="search_form" class="search-form" ng-submit="getResultsClick()">
+                <div>
+                    <input type="text" ng-model="inputkeywords" placeholder="搜索" class="search-part-input" pattern="^[\S](.{0,50})[\S]$" required/><input type="submit" class="search-part-submit" value=" " />
+                </div>
+            </form>
         </div>
-    </form>
-</div>
-<hr>
-<!--<div ng-show="!searched">
+        <!--<div ng-show="!searched">
     <span>搜索失败～默认域名有误或搜索过程中出现问题</span>-->
-<!--</div>-->
-<div ng-show="searched">
-    <div>
-        <!--<div>{{ pageshowcopy.results }}</div>-->
-        <span>搜索结果共有{{ total_items }}条记录。</span>
-        <!--<div ng-repeat="result1 in pageshowcopy.results">
+        <!--</div>-->
+        <div ng-show="searched" class="search-results">
+            <!--<div>{{ pageshowcopy.results }}</div>-->
+            <span>搜索结果共有{{ total_items }}条记录。</span>
+            <!--<div ng-repeat="result1 in pageshowcopy.results">
         <span ng-bind="result1.title" class="title"> </span>
         <span ng-bind="result1.url" class="url"> </span>
         <br>
         <span ng-bind-html="result1.fragment"></span>
     </div>-->
-        <div ng-repeat=" x in pageData">
-            <a href="{{ x.url }}" ng-bind="x.title" class="title"></a><br>
-            <span ng-bind="x.url" class="url"></span><br>
-            <span ng-bind-html="x.fragment" class="fragment"></span>
+            <div ng-repeat=" x in pageData" class="result-item">
+                <a href="{{ x.url }}" ng-bind="x.title" class="title"></a><br>
+                <span ng-bind="x.url" class="url"></span><br>
+                <span ng-bind-html="x.fragment" class="fragment"></span>
+            </div>
+            <!--<pagination total-items="bigTotalItems" ng-change="showItems()" ng-model="bigCurrentPage" items-per-page="itemSize" max-size="maxSize" force-ellipses="true" class="pagination-sm" rotate="false" boundary-links="true" num-pages="numPages"></pagination>-->
+            <!--<ul uib-pagination total-items="bigTotalItems" ng-change="showItems()" ng-model="bigCurrentPage" items-per-page="itemSize" max-size="maxSize" force-ellipses="true" class="pagination-sm" rotate="false" boundary-links="true" num-pages="numPages"></ul>-->
+            <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true"></ul>
         </div>
-        <!--<pagination total-items="bigTotalItems" ng-change="showItems()" ng-model="bigCurrentPage" items-per-page="itemSize" max-size="maxSize" force-ellipses="true" class="pagination-sm" rotate="false" boundary-links="true" num-pages="numPages"></pagination>-->
-        <!--<ul uib-pagination total-items="bigTotalItems" ng-change="showItems()" ng-model="bigCurrentPage" items-per-page="itemSize" max-size="maxSize" force-ellipses="true" class="pagination-sm" rotate="false" boundary-links="true" num-pages="numPages"></ul>-->
-        <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true"></ul>
     </div>
+
+
+
+    <div class="right-part">
+        <div>
+            <!--<span class="default-url">当前域名为：{{ defaulturl.posturl }}</span>-->
+            <!--<span>如果默认域名没显示，请刷新并耐心等待一下</span>-->
+            <!--<button ng-click="changeUrl()" class="change-url">更换当前域名  </button>-->
+            <input type="submit" ng-click="changeUrl()" class="change-url" value="更换当前域名" /><input type="submit" ng-click="changeUrl()" class="change-url-img" value=" " />
+
+        </div>
+
+        <div ng-show="checkpasswordview">
+            <input type="text" ng-model="inputpassword" placeholder="请输入密码" class="form-control" pattern="^[\S](.{0,50})[\S]$" required/>
+            <button ng-click="checkPassword()" class="btn btn-primary">验证</button>
+        </div>
+
+        <div>
+            <form name="url_form" ng-show="checkpass" ng-submit="sendUrlClick()">
+                <div>
+                    <span>提示密码输入正确,输入域名时，请确认您拥有此域名的爬取权限，切勿违反法律法规</span>
+                    <span>域名是浏览器地址栏中url黑体的部分，后面的不需要，而且也不加http或者https://的部分，比如：....</span>
+                    <span>同一时间只能有一个人修改，但可以多人查询（这里没有对修改域名功能做多线程的修改）</span>
+                    <span>不许与默认域名相同</span>
+                    <input type="text" ng-model="inputurl" placeholder="域名" class="form-control" pattern="^[\S](.{0,50})[\S]$" required/>
+                    <input type="submit" class="btn btn-primary" value="Send" />
+                </div>
+            </form>
+        </div>
+        <div ng-show="issendurl">
+            <button ng-click="checkCrawlFinished()" class="btn btn-primary">验证是否爬取完毕</button>
+            <span ng-show="isfinished">爬取完毕</span>
+            <span ng-show="!isfinished">爬取未完成，请等待</span>
+        </div>
+    </div>
+</div>
+
+<div ng-class="{'footer-part-unsearched':!searched, 'footer-part-searched': searched}">
+    <span>©2017 singleyoungtao</span><span>|</span><span>反馈方式 ： singleyoungtao@gmail.com</span>
 </div>

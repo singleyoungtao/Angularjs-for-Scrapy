@@ -1,3 +1,150 @@
+html ， body {
+    height: 100% !important;
+    /*即便如此也不起作用*/
+}
+
+.view-content {
+    height: 100%;
+    /*否则ng-view里面所有的都无法继承到100；*/
+}
+
+
+/*body {
+    background-color: #505770;
+    background-image: url(https://unsplash.it/1600/900?random);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center 0;
+    background-size: cover;
+}*/
+
+.main-part {
+    height: 100%;
+    width: 100%;
+    /*background-image: url(https://unsplash.it/1920/1080?random);*/
+    /*上述网站可以提供随机图片*/
+    background-image: url(./img/2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.left-part {
+    float: left;
+    width: 65%;
+    /*在没有search的情况下为整个页面-44px*/
+    /*在searched情况下最小页面为 整个页面-44px*/
+}
+
+.header-left {
+    height: 44px;
+    line-height: 44px;
+    color: white;
+}
+
+.header-left>span {
+    margin-left: 40px;
+}
+
+.unsearch-part {
+    margin: 120px 0 0 10%;
+}
+
+.searched-part {
+    margin: 44px 0 0 5%;
+}
+
+.search-part-input {
+    display: inline-block;
+    height: 50px;
+    width: 65%;
+    border-width: 0;
+    padding-left: 10px;
+    font-size: 25px;
+}
+
+.search-part-submit {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-width: 0;
+    background-image: url(./img/Search.png);
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: white;
+    font-size: 25px;
+}
+
+.search-results {
+    margin: 20px 15% 0 5%;
+}
+
+.result-item {
+    margin: 0 0 30px 0;
+}
+
+.right-part {
+    float: right;
+    width: 35%;
+}
+
+.change-url {
+    height: 44px;
+    line-height: 44px;
+    color: white;
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    /*讲背景色改为透明*/
+    padding: 0;
+}
+
+.change-url-img {
+    display: inline-block;
+    height: 44px;
+    width: 44px;
+    border-width: 0;
+    padding: 0;
+    background-image: url(./img/Replace-50.png);
+    background-size: 55% 55%;
+    background-repeat: no-repeat;
+    background-position: 0 center;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.footer-part-unsearched {
+    text-align: center;
+    clear: both;
+    /* 清除浮动 */
+    height: 44px;
+    color: #666;
+    background-color: #333;
+    line-height: 44px;
+    font-size: 15px;
+    font-weight: 400;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-part-searched {
+    text-align: center;
+    clear: both;
+    height: 44px;
+    color: #666;
+    background-color: #ececec;
+    line-height: 44px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.footer-part-searched>span {
+    margin-left: 15px;
+}
+
+.footer-part-unsearched>span {
+    margin-left: 15px;
+}
+
 .match {
     font-size: 1.1em;
     color: #dd4b39;
@@ -5,7 +152,7 @@
 }
 
 .url {
-    color: #1a0dab;
+    color: #006621;
 }
 
 .title {
