@@ -47,15 +47,19 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     // }])
     .controller('showPageCtrl', ['$scope', '$http',
         function($scope, $http) {
+            $scope.loading = true;
+
             // $scope.defaulturl = GetUrl.get();
             $http.get('http://127.0.0.1:5000/url-get').then(function(resp) {
                 console.log("123")
                 console.log(resp);
                 $scope.defaulturl = resp.data;
                 console.log($scope.defaulturl.posturl);
+                $scope.loading = false;
 
             }, function(error) {
-                alert("Error!")
+                $scope.loading = false;
+                alert("Error!");
             });
             // console.log($scope.defaultrul.posturl);
             $scope.checkpasswordview = false;
@@ -76,6 +80,8 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
                 }
             }
             $scope.sendUrlClick = function() {
+                $scope.loading = true;
+
                 $scope.issendurl = true;
                 $http.post('http://127.0.0.1:5000/url-post', { posturl: $scope.inputurl }).then(function(resp) {
                         console.log("发送成功");
@@ -83,7 +89,11 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
                         // $scope.defaulturl = $http.get('http://127.0.0.1:5000/url-get').data
                         $scope.defaulturl.posturl = resp.data
                         console.log($scope.defaulturl.posturl);
+                        $scope.loading = false;
+
                     }, function(error) {
+                        $scope.loading = false;
+
                         alert("发送请求失败！")
                         console.log(error.status);
                     })

@@ -1,5 +1,9 @@
+<div class="overlay lightbox" ng-show="loading">
+    <h1>Loading...</h1>
+</div>
+
 <!--<div ng-class="{'main-part-unsearched': !searched, 'main-part-searched': searched}">-->
-<div class="main-part">
+<div ng-class="{'main-part':!searched, 'main-part-searched':searched}">
     <div class="left-part">
         <!--<div ng-show="!searched" class="header-left">-->
         <div class="header-left">
@@ -26,7 +30,7 @@
         <!--</div>-->
         <div ng-show="searched" class="search-results">
             <!--<div>{{ pageshowcopy.results }}</div>-->
-            <span>搜索结果共有{{ total_items }}条记录。</span>
+            <span class="total-items">搜索结果共有{{ total_items }}条记录。</span>
             <!--<div ng-repeat="result1 in pageshowcopy.results">
         <span ng-bind="result1.title" class="title"> </span>
         <span ng-bind="result1.url" class="url"> </span>

@@ -28,6 +28,18 @@ html ， body {
     background-size: 100% 100%;
 }
 
+.main-part-searched {
+    /*height: 100%;
+    width: 100%;*/
+    /*background-image: url(./img/2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;*/
+    overflow: auto;
+    background: url(./img/2.jpg);
+    /*background-repeat: no-repeat;
+    background-size: 100%, 100%;*/
+}
+
 .left-part {
     float: left;
     width: 65%;
@@ -78,6 +90,17 @@ html ， body {
 .search-results {
     margin: 20px 15% 0 5%;
 }
+
+.total-items {
+    font-size: 1.5em;
+    display: inline-block;
+    padding: 0 0 10px 0;
+}
+
+
+/*.page {
+    align: center;
+}*/
 
 .result-item {
     margin: 0 0 30px 0;
@@ -131,7 +154,8 @@ html ， body {
     clear: both;
     height: 44px;
     color: #666;
-    background-color: #ececec;
+    /*background-color: #ececec;*/
+    background-color: #333;
     line-height: 44px;
     font-size: 15px;
     font-weight: 400;
@@ -158,4 +182,22 @@ html ， body {
 .title {
     font-size: 1.2em;
     color: blue;
+}
+
+
+/*半透明遮罩*/
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.lightbox {
+    /*需要引起用户注意的元素*/
+    position: absolute;
+    z-index: 1;
 }
