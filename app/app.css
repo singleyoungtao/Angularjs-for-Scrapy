@@ -171,8 +171,9 @@ html ， body {
 
 .match {
     font-size: 1.1em;
-    color: #dd4b39;
+    /*color: #dd4b39;*/
     font-weight: 100;
+    color: black;
 }
 
 .url {
